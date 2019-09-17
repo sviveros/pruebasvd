@@ -2,7 +2,7 @@
   "name": "crud-nodejs-mysql",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "crs/app.js",
   "scripts": {
     "dev": "nodemon crs/app.js"
   },
