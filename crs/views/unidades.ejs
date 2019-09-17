@@ -1,0 +1,78 @@
+<% include partials/_header %>
+
+<!-- navigation -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <a class="navbar-brand" href="/"><img src="MySqlSVD.png" style="width: 100px"></a>
+    <h1>Catalogo Unidades de Medida</h1>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr class="table-primary">
+                        <td>It.</td>
+                        <td>Codigo</td>
+                        <td>Nombre Unidad</td>
+                        <td>Abreviatura</td>
+                        <td>Opciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (data) { %>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                            <tr>
+                                <td><%= (i + 1) %></td>
+                                <td><%= data[i].UNIDACDG %></td>
+                                <td><%= data[i].UNIDANMB %></td>
+                                <td><%= data[i].UNIDAABR %></td>
+                                <td>
+                                    <!--
+                                    <a href="/update/<%= data[i].UNIDACDG %>" data-toggle="tooltip" title="Modificar el registro seleccionado. !!!">
+                                        <img src="editar2.png" style="width: 20px">
+                                    </a>
+                                    <a href="/delete/<%= data[i].UNIDACDG %>" data-toggle="tooltip" title="Eliminar Registro. !!!">
+                                        <img src="eliminar.png" style="width: 25px">
+                                    </a>
+                                    -->
+                                    <button onclick="asignar('<%= data[i].UNIDACDG %>','<%= data[i].UNIDANMB %>','<%= data[i].UNIDAABR %>')">
+                                        <img src="editar2.png" style="width: 20px" data-toggle="tooltip" title="Modificar el registro seleccionado. !!!">
+                                    </button>
+                                    <button onclick="confirmar_eliminar('<%= data[i].UNIDACDG %>')">
+                                        <img src="eliminar.png" style="width: 20px"  data-toggle="tooltip" title="Eliminar Registro. !!!">
+                                    </button>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div id="capUnidad" class="col-md-4">
+            <div id="card_unidad" class="card-body">
+      
+                <form id="frmcaptura" action="/add" method="POST">
+                    <div class="form-group">
+                        <input id="unidacdg" type="text" name="unidacdg" placeholder="Codigo Unidad" required class="form-control" autofocus onblur="this.value=this.value.toUpperCase();">
+                        </div>
+                    <div class="form-group">
+                        <input id="unidanmb" type="text" name="unidanmb" placeholder="Descripcion Unidad de Medida" required class="form-control" onblur="this.value=this.value.toUpperCase();">
+                        </div>
+                    <div class="form-group">
+                        <input id="unidaabr" type="text" name="unidaabr" placeholder="Abreviatura" required class="form-control" onblur="this.value=this.value.toUpperCase();">
+                    </div>
+        
+                    <button id="btnguardar" type="submit" class="btn btn-primary">
+                        Adicionar Registro
+                    </button>
+                    <button type="reset" onclick="cancelar()" class="btn btn-primary">
+                        Cancelar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/_footer %>

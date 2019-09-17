@@ -1,0 +1,27 @@
+<% include partials/_header %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-5 offset-md-3 card">
+      <div class="card-body">
+        <form action="/update/<%= data.UNIDACDG %>" method="POST">
+          <div class="form-group">
+            <input type="text" name="unidacdg" value="<%= data.UNIDACDG%>" placeholder="Codigo Unidad" disabled class="form-control" autofocus>
+          </div>
+          <div class="form-group">
+            <input type="text" name="unidanmb" value="<%= data.UNIDANMB%>" placeholder="Descripcion Unidad de Medida" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="text" name="unidaabr" value="<%= data.UNIDAABR%>" placeholder="Abreviatura" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Registrar Cambios
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include partials/_footer %>
